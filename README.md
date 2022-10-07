@@ -6,6 +6,8 @@
 
 [Utilizar Docker Compose com MySQL e phpMyAdmin](https://github.com/devsuperior/docker-compose-mysql)
 
+[Baixar projeto DSMovie Ref](https://github.com/devsuperior/dsmovie-ref)
+
 ### Passo: Dependência Maven
 
 - Incluir a dependência do mysql no arquivo pom.xml:
