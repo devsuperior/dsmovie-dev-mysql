@@ -1,30 +1,43 @@
-# ![DevSuperior logo](https://raw.githubusercontent.com/devsuperior/bds-assets/main/ds/devsuperior-logo-small.png) DSMovie Reference Project
->  *This repository aims to provide the Reference project DSMovie to be used in DevSuperior courses*
+## Estudo de caso Spring Boot e MySQL
 
-## Postman Collection and Environment:
-https://www.getpostman.com/collections/8494dbba70a92f54870b
+*Conectar um projeto Spring Boot ao MySQL*
+
+#### Pré-requisito
+
+[Utilizar Docker Compose com MySQL e phpMyAdmin](https://github.com/devsuperior/docker-compose-mysql)
+
+### Passo: Dependência Maven
+
+- Incluir a dependência do mysql no arquivo pom.xml:
+
+```xml
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <scope>runtime</scope>
+</dependency>
 ```
-host: http://localhost:8080
+
+### Passo: Validação no MySQL local
+- Criar o perfil de projeto: dev
+- Gerar script SQL no perfil dev
+- Testar projeto no banco MySQL local
+
+#### application-dev.properties
 ```
-## Domain Model
-![Image](https://raw.githubusercontent.com/devsuperior/bds-assets/main/sds/dsmovie-dominio.png "Modelo conceitual")
+#spring.jpa.properties.javax.persistence.schema-generation.create-source=metadata
+#spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create
+#spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=create.sql
+#spring.jpa.properties.hibernate.hbm2ddl.delimiter=;
 
-## Includes
-The following features are preconfigured.
+spring.datasource.url=jdbc:mysql://localhost:3307/dsmovie?serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=1234567
 
-### Features
-- Find movies
-- Find movies by id
-- Insert new movie
-- Update movie
-- Delete movie
-- Save review
-- Exception handling: resource not found (*404 not found*)
-- Exception handling: Database error (*400 bad request*)
-
-### Spring Boot versions
-- 3.0.0-M2
-- 2.7.3
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.jpa.hibernate.ddl-auto=none
+```
 
 
 
